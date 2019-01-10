@@ -1,0 +1,53 @@
+{
+	"Coding: utf-8": {
+		"prefix": "cutf8",
+		"body": ["# -*- coding: utf-8 -*-", ""]
+	},
+	"Import usual things from Odoo": {
+		"prefix": "odoo_import",
+		"body": ["from odoo import api, fields, models, _", ""]
+	},
+	"Create new Odoo Class": {
+		"prefix": "odooClass",
+		"body": [
+			"class ${1}(${2:models}.${3:Model}):",
+			"    _name = '${TM_FILEPATH/.*\\/(\\w+)\\/models.*/${1:xxx}/}.${1/(.*)/${1:/downcase}/}'",
+			"    _description = '${1}'",
+			""
+		]
+	},
+	// Basic Fields
+	"Declare fields.Boolean": {
+		"prefix": "fbool",
+		"body": "fields.Boolean($1)"
+	},
+	"Declare fields.Char": {
+		"prefix": "fchar",
+		"body": "fields.Char($1)"
+	},
+	"Declare fields.Date": {
+		"prefix": "fdate",
+		"body": "fields.Date($1)"
+	},
+	"Declare fields.Integer": {
+		"prefix": "finteger",
+		"body": "fields.Integer($1)"
+	},
+	"Declare fields.Text": {
+		"prefix": "ftext",
+		"body": "fields.Text($1)"
+	},
+	// Relational Fields
+	"Declare fields.Many2many": {
+		"prefix": "fm2m",
+		"body": "fields.Many2many('$1')"
+	},
+	"Declare fields.Many2one": {
+		"prefix": "fm2o",
+		"body": "fields.Many2one('$1')"
+	},
+	"Declare fields.One2many": {
+		"prefix": "fo2m",
+		"body": "fields.One2many('$1', '$2')"
+	},
+}
