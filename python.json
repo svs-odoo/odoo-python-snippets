@@ -11,8 +11,8 @@
 		"prefix": "odooClass",
 		"body": [
 			"class ${1}(${2:models}.${3:Model}):",
-			"    _name = '${TM_FILEPATH/.*\\/(\\w+)\\/models.*/${1:xxx}/}.${1/(.*)/${1:/downcase}/}'",
-			"    _description = '${1}'",
+			"\t_name = '${TM_FILEPATH/.*\\/(\\w+)\\/models.*/${1}/}.${1/(.*)/${1:/downcase}/}'",
+			"\t_description = '${1}'",
 			""
 		]
 	},
@@ -28,6 +28,10 @@
 	"Declare fields.Date": {
 		"prefix": "fdate",
 		"body": "fields.Date($1)"
+	},
+	"Declare fields.Float": {
+		"prefix": "ffloat",
+		"body": "fields.Float($1)"
 	},
 	"Declare fields.Integer": {
 		"prefix": "finteger",
