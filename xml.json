@@ -1,0 +1,51 @@
+{
+	"Odoo tag": {
+		"prefix": "odoo",
+		"body": [
+			"<?xml version=\"1.0\" encoding=\"utf-8\"?>",
+			"<odoo>",
+			"\t$0",
+			"</odoo>",
+			""
+		]
+	},
+	"Menu Item": {
+		"prefix": "menuitem",
+		"body": [
+			"<menuitem",
+			"\tid=\"$1_menu\"",
+			"\tname=\"$2\"",
+			"/>$0",
+		]
+	},
+	"Action Tag": {
+		"prefix": "action",
+		"body": "action=\"$1_action\"$0"
+	},
+	"Record View": {
+		"prefix": "recordView",
+		"body": [
+			"<record id=\"$1_view_$2\" model=\"${3:ir.ui.view}\">",
+			"\t<field name=\"name\">${TM_FILEPATH/.*\\/(\\w+)\\/views.*/${1}/}.$1.$2</field>",
+			"\t<field name=\"model\">${TM_FILEPATH/.*\\/(\\w+)\\/views.*/${1}/}.$1</field>$0",
+			"</record>"
+		]
+	},
+	"Field Arch": {
+		"prefix": "farch",
+		"body": [
+			"<field name=\"arch\" type=\"xml\">",
+			"\t<tree>",
+			"\t\t<field name=\"$1\"/>$0",
+			"\t</tree>"
+		]
+	},
+	"Field Tag": {
+		"prefix": "ffield",
+		"body": "<field name=\"$1\"/>$0"
+	},
+	"Widget Attribute": {
+		"prefix": "attrWidget",
+		"body": "widget=\"${1|float_time,handle,image,many2many_tags,many2onebutton,progressbar,statusbar|}\"$0"
+	}
+}
