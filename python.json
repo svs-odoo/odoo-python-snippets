@@ -4,7 +4,7 @@
 		"body": ["# -*- coding: utf-8 -*-", ""]
 	},
 	"Import usual things from Odoo": {
-		"prefix": "odoo_import",
+		"prefix": "odooImport",
 		"body": ["from odoo import api, fields, models, _", ""]
 	},
 	"Create new Odoo Class": {
