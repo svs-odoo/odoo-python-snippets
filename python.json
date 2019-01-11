@@ -1,11 +1,11 @@
 {
 	"Coding: utf-8": {
 		"prefix": "cutf8",
-		"body": ["# -*- coding: utf-8 -*-", ""]
+		"body": "# -*- coding: utf-8 -*-$0"
 	},
 	"Import usual things from Odoo": {
 		"prefix": "odooImport",
-		"body": ["from odoo import api, fields, models, _", ""]
+		"body": "from odoo import ${1:api, }${2:fields, }${3:models, }${4:_}$0"
 	},
 	"Create new Odoo Class": {
 		"prefix": "odooClass",
@@ -15,6 +15,32 @@
 			"\t_description = '${1}'",
 			""
 		]
+	},
+	"Manifest": {
+		"prefix": "omanifest",
+		"body": [
+			"# -*- coding: utf-8 -*-",
+			"{",
+			"\t'name': \"$1\",",
+			"\t'summary': \"\"\"$2\"\"\",",
+			"\t'description': \"\"\"$3\"\"\",",
+			"",
+			"\t'author': \"${4:Odoo}\",",
+			"\t'website': \"${5:http://www.odoo.com}\",",
+			"",
+			"\t'category': \"${6|Technical Settings,Localization,Account Charts,Sales,Lead Automation,Project,Inventory,Manufacturing,Invoicing &amp; Payments,Accounting &amp; Finance,Purchases,User types,Employees,Leaves,Contracts,Recruitment,Expenses,Timesheets,Attendance,Appraisals,Payroll,Gamification,Events,Email Marketing,Survey,Point of Sale,Specific Industry Applications,Website,Document Signatures,After-Sales,Theme,Administration,Extra Rights,Other Extra Rights|}\",",
+			"\t'version': \"${7:0.1}\",",
+			"\t'depends': ['${8:base}'],",
+			"",
+			"\t'data': ['$9'],",
+			"\t'demo': ['$10'],",
+			"\t'installable': ${11|True,False|},",
+			"\t'application': ${12|True,False|},",
+			"\t'auto_install': ${13|True,False|},",
+			"}",
+			""
+		],
+		"description": "Declare an Odoo module's manifest"
 	},
 	// Basic Fields
 	"Declare fields.Boolean": {
