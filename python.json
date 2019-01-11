@@ -80,4 +80,10 @@
 		"prefix": "fo2m",
 		"body": "fields.One2many('$1', '$2')"
 	},
+	// Parameters
+	"param_ondelete": {
+		"prefix": "pondelete",
+		"body": "ondelete='${1|set null,restrict,cascade|}'$0",
+		"description": "What to do when the referred record is deleted"
+	}
 }

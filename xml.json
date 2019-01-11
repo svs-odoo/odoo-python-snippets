@@ -18,20 +18,17 @@
 			"/>$0",
 		]
 	},
-	"Action Tag": {
-		"prefix": "action",
-		"body": "action=\"$1_action\"$0"
-	},
-	"Record View": {
+	"odoo_record_view": {
 		"prefix": "recordView",
 		"body": [
 			"<record id=\"$1_view_$2\" model=\"ir.ui.view\">",
 			"\t<field name=\"name\">${TM_FILEPATH/.*\\/(\\w+)\\/views.*/${1}/}.$1.$2</field>",
 			"\t<field name=\"model\">${TM_FILEPATH/.*\\/(\\w+)\\/views.*/${1}/}.$1</field>$0",
 			"</record>"
-		]
+		],
+		"description": "Create a Record View"
 	},
-	"Record Action": {
+	"odoo_record_action": {
 		"prefix": "recordAction",
 		"body": [
 			"<record id=\"${1}_action\" model=\"ir.actions.act_window\">",
@@ -39,24 +36,72 @@
 			"\t<field name=\"res_model\">${TM_FILEPATH/.*\\/(\\w+)\\/views.*/${1}/}.${1}</field>",
 			"\t<field name=\"view_mode\">${2|form,tree|}$0</field>",
 			"</record>"
-		]
+		],
+		"description": "Create a Record Action"
+	},
+	"odoo_record_data": {
+		"prefix": "recordData",
+		"body": [
+			"<record id=\"${TM_FILENAME_BASE}_${1}\" model=\"${TM_FILEPATH/.*\\/(\\w+)\\/demo\\/.*/${1}/}.${3}\">",
+			"\t<field name=\"${4}\">${5}</field>$0",
+			"</record>"
+		],
+		"description": "Create a record with data (like demo data for example)."
 	},
 	"Field Arch": {
 		"prefix": "farch",
 		"body": [
 			"<field name=\"arch\" type=\"xml\">",
-			"\t<${1|form,tree|}>",
-			"\t\t<field name=\"$2\"/>$0",
+			"\t<${1|form,search,tree|}>",
+			"\t\t$0",
 			"\t</$1>",
 			"</field>"
 		]
 	},
-	"Field Tag": {
-		"prefix": "ffield",
-		"body": "<field name=\"$1\"/>$0"
+	"odoo_field_tag_autoclosing": {
+		"prefix": "tfield",
+		"body": "<field name=\"$1\"/>$0",
+		"description": "Autoclosing field tag"
+	},
+	"odoo_field_tag": {
+		"prefix": "tfield",
+		"body": "<field name=\"$1\">$2</field>$0",
+		"description": "Field tag"
+	},
+	"odoo_filter_tag": {
+		"prefix": "tfilter",
+		"body": "<filter name=\"$1\" string=\"$2\" domain=\"[$3]\"/>$0",
+		"description": "A filter is a predefined toggle in the search view, it can only be enabled or disabled. Its main purposes are to add data to the search context (the context passed to the data view for searching/filtering), or to append new sections to the search filter."
+	},
+	"odoo_group_tag": {
+		"prefix": "tgroup",
+		"body": [
+			"<group>",
+			"\t$0",
+			"</group>"
+		]
+	},
+	"odoo_sheet_tag": {
+		"prefix": "tsheet",
+		"body": [
+			"<sheet>",
+			"\t$0",
+			"</sheet>"
+		]
+	},
+	"odoo_action_attribute": {
+		"prefix": "action",
+		"body": "action=\"$1_action\"$0",
+		"description": "Load an execute an ir.actions, the button’s name is the database id of the action. The context is expanded with the list’s model (as active_model), the current row’s record (active_id) and all the records currently loaded in the list (active_ids, may be just a subset of the database records matching the current search)."
 	},
 	"Widget Attribute": {
 		"prefix": "attrWidget",
-		"body": "widget=\"${1|float_time,handle,image,many2many_tags,many2onebutton,progressbar,statusbar|}\"$0"
+		"body": "widget=\"${1|float_time,handle,image,many2many_tags,many2onebutton,progressbar,statusbar|}\"$0",
+		"description": "Alternate representations for a field’s display."
+	},
+	"web_icon_attribute": {
+		"prefix": "webicon",
+		"body": "web_icon=\"${TM_FILEPATH/.*\\/(\\w+)\\/views.*/${1}/},${2:static/description/icon}.${3|jpg,png|}\"$0",
+		"description": "Add an icon to your application."
 	}
 }
