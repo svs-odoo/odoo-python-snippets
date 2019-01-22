@@ -45,27 +45,35 @@
 	// Basic Fields
 	"Declare fields.Boolean": {
 		"prefix": "fbool",
-		"body": "fields.Boolean($1)"
+		"body": "fields.Boolean($1)$0"
 	},
 	"Declare fields.Char": {
 		"prefix": "fchar",
-		"body": "fields.Char($1)"
+		"body": "fields.Char($1)$0"
 	},
 	"Declare fields.Date": {
 		"prefix": "fdate",
-		"body": "fields.Date($1)"
+		"body": "fields.Date($1)$0"
+	},
+	"Declare fields.Datetime": {
+		"prefix": "fdatetime",
+		"body": "fields.Datetime($1)$0"
 	},
 	"Declare fields.Float": {
 		"prefix": "ffloat",
-		"body": "fields.Float($1)"
+		"body": "fields.Float($1)$0"
 	},
 	"Declare fields.Integer": {
 		"prefix": "finteger",
-		"body": "fields.Integer($1)"
+		"body": "fields.Integer($1)$0"
+	},
+	"Declare fields.Selection": {
+		"prefix": "fselection",
+		"body": "fields.Selection([('$1', '$2')$0])"
 	},
 	"Declare fields.Text": {
 		"prefix": "ftext",
-		"body": "fields.Text($1)"
+		"body": "fields.Text($1)$0"
 	},
 	// Relational Fields
 	"Declare fields.Many2many": {

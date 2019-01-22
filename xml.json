@@ -48,11 +48,60 @@
 		],
 		"description": "Create a record with data (like demo data for example)."
 	},
+	"odoo_record_group": {
+		"prefix": "recordGroup",
+		"body": [
+			"<record id=\"group_$1\" model=\"res.groups\">",
+			"\t<field name=\"name\">$2</field>",
+			"\t<field name=\"category_id\" ref=\"${TM_FILEPATH/.*\\/(\\w+)\\/security\\/.*/${1}/}.${3}\"/>",
+			"\t<field name=\"implied_ids\" eval=\"[(6,0,[ref('$4')])]\"/>",
+			"</record>"
+		],
+		"description": "Create a record for define a group"
+	},
+	"odoo_record_module_category": {
+		"prefix": "recordModuleCategory",
+		"body": [
+			"<record id=\"module_category_$1\" model=\"ir.module.category\">",
+			"\t<field name=\"name\">$1</field>",
+			"</record>$0",
+		]
+	},
+	"odoo_record_rule": {
+		"prefix": "recordRule",
+		"body": [
+			"<record id=\"$1\" model=\"ir.rule\">",
+			"\t<field name=\"name\">$2</field>",
+			"\t<field name=\"model_id\" ref=\"model_${TM_FILEPATH/.*\\/(\\w+)\\/security\\/.*/${1}/}_$3\"/>",
+			"\t<field name=\"groups\" eval=\"[(4, ref('${TM_FILEPATH/.*\\/(\\w+)\\/security\\/.*/${1}/}.$4'))]\"/>",
+			"\t<field name=\"perm_read\" eval=\"${5|0,1|}\"/>",
+			"\t<field name=\"perm_create\" eval=\"${6|0,1|}\"/>",
+			"\t<field name=\"perm_write\" eval=\"${7|0,1|}\"/>",
+			"\t<field name=\"perm_unlink\" eval=\"${8|0,1|}\"/>",
+			"\t<field name=\"domain_force\">",
+			"\t\t[($9, $10, $11)]",
+			"\t</field>",
+			"</record>$0"
+		],
+	},
+	"odoo_report": {
+		"prefix": "oreport",
+		"body": [
+			"<report",
+			"\tid=\"report_$1\"",
+			"\tmodel=\"${TM_FILEPATH/.*\\/(\\w+)\\/report\\/.*/${1}/}.$1\"",
+			"\tstring=\"${2:Report }${1/(.*)/${1:/capitalize}/}\"",
+			"\tname=\"${TM_FILEPATH/.*\\/(\\w+)\\/report\\/.*/${1}/}.report_$1_view\"",
+			"\tfile=\"${TM_FILEPATH/.*\\/(\\w+)\\/report\\/.*/${1}/}.report_$1\"",
+			"\treport_type=\"qweb-pdf\" />"
+		],
+		"description": ""
+	},
 	"Field Arch": {
 		"prefix": "farch",
 		"body": [
 			"<field name=\"arch\" type=\"xml\">",
-			"\t<${1|form,search,tree|}>",
+			"\t<${1|form,pivot,search,tree|}>",
 			"\t\t$0",
 			"\t</$1>",
 			"</field>"
@@ -81,6 +130,14 @@
 			"</group>"
 		]
 	},
+	"odoo_page_tag": {
+		"prefix": "tpage",
+		"body": [
+			"<page>",
+			"\t$0",
+			"</page>"
+		]
+	},
 	"odoo_sheet_tag": {
 		"prefix": "tsheet",
 		"body": [
@@ -94,14 +151,39 @@
 		"body": "action=\"$1_action\"$0",
 		"description": "Load an execute an ir.actions, the button’s name is the database id of the action. The context is expanded with the list’s model (as active_model), the current row’s record (active_id) and all the records currently loaded in the list (active_ids, may be just a subset of the database records matching the current search)."
 	},
+	"odoo_readonly_attribute": {
+		"prefix": "readonly",
+		"body": "readonly=\"${1|1,0|}\"$0"
+	},
 	"Widget Attribute": {
 		"prefix": "attrWidget",
-		"body": "widget=\"${1|float_time,handle,image,many2many_tags,many2onebutton,progressbar,statusbar|}\"$0",
+		"body": "widget=\"${1|float_time,email,handle,image,mail_followers,mail_thread,many2many_tags,many2onebutton,progressbar,statusbar|}\"$0",
 		"description": "Alternate representations for a field’s display."
 	},
 	"web_icon_attribute": {
 		"prefix": "webicon",
 		"body": "web_icon=\"${TM_FILEPATH/.*\\/(\\w+)\\/views.*/${1}/},${2:static/description/icon}.${3|jpg,png|}\"$0",
 		"description": "Add an icon to your application."
-	}
+	},
+	// Qweb
+	"qweb-t": {
+		"prefix": "qt",
+		"body": [
+			"<t$1>",
+			"\t$0",
+			"</t>"
+		]
+	},
+	"qweb-t-esc": {
+		"prefix": "qt-esc",
+		"body": "<t t-esc=\"$1\"/>"
+	},
+	"qweb-t-foreach": {
+		"prefix": "qt-foreach",
+		"body": [
+			"<t t-foreach=\"${1:docs}\" t-as=\"${2:doc}\">",
+			"\t$0",
+			"</t>"
+		]
+	},
 }
